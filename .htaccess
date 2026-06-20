@@ -1,0 +1,34 @@
+# ============================================
+# API PTN - Apache Security & Routing Rules
+# ============================================
+
+# Block akses langsung ke file sensitif
+<FilesMatch "\.(git|gitignore|md|yml|yaml|json|lock|sh)$">
+    Require all denied
+</FilesMatch>
+
+# Block akses ke Dockerfile
+<Files "Dockerfile">
+    Require all denied
+</Files>
+
+# Block akses ke LICENSE
+<Files "LICENSE">
+    Require all denied
+</Files>
+
+# IZINKAN akses ke webhook.php (untuk GitHub auto-deploy)
+<Files "webhook.php">
+    Require all granted
+</Files>
+
+# IZINKAN akses ke index.php
+<Files "index.php">
+    Require all granted
+</Files>
+
+# Block akses ke hidden files/directories (.git, .env, dll)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule (^|/)\.(?!htaccess) - [F,L]
+</IfModule>

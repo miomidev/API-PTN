@@ -1,0 +1,9 @@
+services:
+  api-ptn:
+    build: .
+    container_name: api-ptn
+    ports:
+      - "8087:80"
+    volumes:
+      - .:/var/www/html
+    restart: unless-stopped

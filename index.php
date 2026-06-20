@@ -23,7 +23,7 @@ $json_string = file_get_contents($json_file);
 $data_kampus = json_decode($json_string, true);
 
 // 4. Ambil Parameter Pencarian dari URL
-// Contoh: domain.com/api-snbt/?q=bogor
+// Contoh: api-ptn.miomidev.com/?q=bogor
 $query = isset($_GET['q']) ? strtolower(trim($_GET['q'])) : '';
 
 // 5. Logika Pencarian
@@ -45,7 +45,7 @@ if ($query) {
             "name" => "API SNBT PTN Indonesia",
             "author" => "Romi Setiawan",
             "version" => "1.0.0",
-            "github" => "https://github.com"
+            "github" => "https://github.com/miomidev/API-PTN"
         ],
         // Bagian Data Utama
         "status" => "success",

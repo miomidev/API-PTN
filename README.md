@@ -19,13 +19,13 @@ Anda tidak perlu menginstall apapun. Cukup lakukan *Request HTTP GET* ke endpoin
 Mencari data universitas dan prodi berdasarkan kata kunci.
 
 - **Method:** `GET`
-- **URL:** `https://snbt-api.miomi.dev/`
+- **URL:** `https://api-ptn.miomidev.com/`
 - **Parameter:** `q` (Query pencarian)
 
 #### Contoh Request (Browser / Postman)
 Contoh Request: Mencari kampus di Bogor (IPB).
 ```bash
-GET [https://snbt-api.miomi.dev/?q=bogor]
+GET [https://api-ptn.miomidev.com/?q=bogor]
 ```
 
 ## 📦 Struktur Response
@@ -112,7 +112,7 @@ JavaScript (Fetch API) :
 ``` bash
 const keyword = 'ugm';
 
-fetch(`https://snbt-api.miomi.dev/?q=${keyword}`)
+fetch(`https://api-ptn.miomidev.com/?q=${keyword}`)
   .then(response => response.json())
   .then(result => {
     console.log("Author:", result.meta.author);
@@ -131,7 +131,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<void> searchKampus(String keyword) async {
-  final url = Uri.parse('[https://snbt-api.miomi.dev/?q=$keyword]');
+  final url = Uri.parse('[https://api-ptn.miomidev.com/?q=$keyword]');
   
   try {
     final response = await http.get(url);
@@ -153,7 +153,7 @@ PHP (cURL)
 ``` bash
 <?php
 $keyword = "itb";
-$url = "[https://snbt-api.miomi.dev/?q=]" . urlencode($keyword);
+$url = "[https://api-ptn.miomidev.com/?q=]" . urlencode($keyword);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
