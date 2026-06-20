@@ -20,12 +20,15 @@ Mencari data universitas dan prodi berdasarkan kata kunci.
 
 - **Method:** `GET`
 - **URL:** `https://api-ptn.miomidev.com/`
-- **Parameter:** `q` (Query pencarian)
+- **Parameter:** 
+  - `q` *(Opsional)*: Kata kunci (Nama Kampus atau Nama Prodi). Contoh: `q=kedokteran`
+  - `jenjang` *(Opsional)*: Filter jenjang pendidikan. Contoh: `jenjang=sarjana`
+  - `kategori` *(Opsional)*: Filter jenis kampus. Contoh: `kategori=vokasi`
 
-#### Contoh Request (Browser / Postman)
-Contoh Request: Mencari kampus di Bogor (IPB).
+#### Contoh Request Lanjutan
+Mencari jurusan kedokteran untuk jenjang vokasi (D3/D4):
 ```bash
-GET [https://api-ptn.miomidev.com/?q=bogor]
+GET [https://api-ptn.miomidev.com/?q=kedokteran&jenjang=terapan&kategori=vokasi]
 ```
 
 ## 📦 Struktur Response
