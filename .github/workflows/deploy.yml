@@ -1,0 +1,50 @@
+name: 🚀 Auto Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy API PTN
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔐 SSH & Deploy to VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            echo "========================================="
+            echo "🚀 Deploying API PTN..."
+            echo "========================================="
+
+            PROJECT_DIR="/home/miomideveloper/api-ptn"
+
+            # Cek apakah repo sudah ada
+            if [ ! -d "$PROJECT_DIR" ]; then
+              echo "📦 Cloning repository..."
+              cd /home/miomideveloper
+              git clone https://github.com/miomidev/API-PTN.git api-ptn
+              cd api-ptn
+            else
+              echo "📥 Pulling latest changes..."
+              cd $PROJECT_DIR
+              git pull origin main
+            fi
+
+            # Build & restart container
+            echo "🐳 Building & starting Docker container..."
+            docker compose up -d --build
+
+            # Verifikasi
+            echo "✅ Verifying deployment..."
+            sleep 3
+            docker ps | grep api-ptn
+
+            echo "========================================="
+            echo "🎉 Deploy selesai!"
+            echo "========================================="
